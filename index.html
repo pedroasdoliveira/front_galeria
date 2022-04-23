@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+    <title>Galeria</title>
+  </head>
+  <body>
+    <!------------------------------------------- Header  -------------------------------------------------->
+    <section class="Home">
+      <header class="Header">
+        <div class="Header__row">
+          <div class="Description">
+            <img class="Description__img" src="" alt="" />
+
+            <h1 class="Description__title">Galeria</h1>
+          </div>
+        </div>
+      </header>
+
+      <!---------------------------------------- Input ------------------------------------------------->
+      <main>
+        <h2>Encontrar Imagem</h2>
+        <div class="find-image">
+          <div class="image-id-search">
+            <input
+              id="idImage"
+              type="text"
+              placeholder="Digite o numero do card."
+            />
+            <button id="idImageBtn" onclick="findbyGallery()"><i class="bi bi-search"></i></button>
+          </div>
+          <div id="foundImage"></div>
+        </div>
+
+        <!---------------------------------------------- Gallery ------------------------------------------->
+        <h2>Galerias</h2>
+        <div class="container">
+          <div class="galeriaLista" id="galleryList"></div>
+        </div>
+
+        <!---------------------------------------------- Modal  -------------------------------------------->
+        <section class="btn-modal-create">
+          <button type="button" onclick="openModal()">Acresentar Card</button>
+        </section>
+
+        <section class="modal" id="overlay">
+          <div class="modal__card">
+            <div class="header">
+              <h2>Adicionar card a galeria</h2>
+              <a onclick="closeModal()"><i class="bi bi-x-circle"></i></a>
+            </div>
+
+            <div class="modal__form">
+              <form action="">
+                <input type="hidden" name="_id" id="_id">
+
+                <input type="text" name="titulo" id="titulo" placeholder="Titulo do Card" required>
+
+                <input type="text" name="tema" id="tema" placeholder="Tema do Card" required>
+
+                <input type="text" name="imagem" id="imagem" placeholder="Link da imagem" required>
+
+                <input type="number" name="ano" id="ano" placeholder="Ano da imagem">
+
+                <textarea name="descricao" id="descricao" cols="10" rows="6" placeholder="Descrição" required></textarea>
+
+                <button id="button-modal" type="submit" onclick="modal()">Adicionar</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!---------------------------------------------- footer ------------------------------------------------->
+      <footer>
+        <div>
+          <p>Desenvolvedor FullStack: Pedro Oliveira</p>
+          <a href="https://github.com/pedroasdoliveira" target="_blank"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/pedro-augusto-silva-de-oliveira/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </footer>
+    </section>
+
+
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
