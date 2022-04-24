@@ -114,7 +114,7 @@ async function modalFunctions(event) {
         description
     };
 
-    const modo = id > 0;
+    const modo = id != '';
 
     const endpoint = baseURL + (modo ? `/edit/${id}` : `/add`);
 
@@ -129,29 +129,88 @@ async function modalFunctions(event) {
 
     const newGallery = await response.json();
 
-    const html = `
-        <div class="galeriaListaItem" id="galeriaListaItem_${gallery._id}">
+    document.location.reload(true);
 
-            <div>
-                <div class="galeriaListaItem__titulo">${newGallery.titulo}</div>
-                <div class="galeriaListaItem__tema">${newGallery.tema}</div>
-                <img class="galeriaListaItem__imagem" src="${newGallery.imagem}" alt="Imagem ${newGallery.titulo}"/>
-                <div class="galeriaListaItem__ano">${newGallery.ano}</div>
-                <div class="galeriaListaItem__descr">${newGallery.descricao}</div>
-                <div class="galeriaListaItem__btns">
-                    <button class="edit btn" onclick="openModal('${newGallery._id}')">Editar</button>
-                    <button class="delete btn" onclick="openModalDelete('${newGallery._id}')">Apagar</button>
-                </div>
-            </div>
-        </div>
-    `;
+    // const html = `
+    //     <div class="galeriaListaItem" id="galeriaListaItem_${gallery._id}">
 
-    if (modo) { // update
-        document.querySelector(`#galeriaListaItem_${id}`).outerHTML = html;
-    }
-    else { // add
-        document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
-    }
+    //         <div>
+    //             <div class="galeriaListaItem__titulo">${newGallery.titulo}</div>
+    //             <div class="galeriaListaItem__tema">${newGallery.tema}</div>
+    //             <img class="galeriaListaItem__imagem" src="${newGallery.imagem}" alt="Imagem ${newGallery.titulo}"/>
+    //             <div class="galeriaListaItem__ano">${newGallery.ano}</div>
+    //             <div class="galeriaListaItem__descr">${newGallery.descricao}</div>
+    //             <div class="galeriaListaItem__btns">
+    //                 <button class="edit btn" onclick="openModal('${newGallery._id}')">Editar</button>
+    //                 <button class="delete btn" onclick="openModalDelete('${newGallery._id}')">Apagar</button>
+    //             </div>
+    //         </div>
+    //     </div>
+    // `;
 
+    // if (modo) { // update
+    //     document.querySelector(`#galeriaListaItem_${id}`).outerHTML = html;
+    // }
+    // else { // add
+    //     document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
+    // }
+
+    openMessage();
     closeModal();
+}
+
+// ----------------------------------------------- Modal delete ---------------------------------
+async function openModalDelete(id) {
+    document.querySelector('#overlay-delete').style.display = 'flex';
+
+    const btnDelete = document.querySelector('.btns_yes');
+
+    btnDelete.addEventListener('click', function() {
+        deleteGallery(id);
+    })
+}
+
+async function closeModalDelete() {
+    document.querySelector('#overlay-delete').style.display = 'none';
+}
+
+async function deleteGallery(id) {
+    const response = await fetch(`${baseURL}/delete/${id}`, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+    });
+
+    document.querySelector('#galleryList').innerHTML = '';
+
+    document.location.reload(true);
+    openMessage();
+    closeModalDelete();
+    findAllGalleries();
+}
+
+// --------------------------------------------- Alerts -----------------------------------------
+let seconds;
+let timer;
+
+function openMessage() {
+    const alert = document.querySelector('#alert');
+    alert.style.display = 'flex';
+
+    seconds = 0;
+    timer = setInterval(function() {
+        seconds++;
+
+        if (seconds == 5) {
+            closeMessage();
+        }
+    }, 1000);
+}
+
+function closeMessage() {
+    clearInterval(timer);
+    const alert = document.querySelector('#alert');
+    alert.style.display = 'none';
 }

@@ -75,6 +75,37 @@
           </div>
         </section>
 
+        <!--------------------------------------------------- Modal Delete ----------------------------------------->
+        <section class="modal" id="overlay-delete">
+          <div class="delete__card">
+            <div class="header-delete">
+              <h2 id="header-delete">Deletar Card</h2>
+              <a onclick="closeModalDelete()"><i class="bi bi-x-circle"></i></a>
+            </div>
+
+            <div class="modal-delete">
+              <p>Deseja remover o Card escolhido?</p>
+              <div class="btns"> 
+                <button class="btns_yes btn">Sim</button>
+                <button class="btns_no btn" onclick="closeModalDelete()">Não</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!---------------------------------------------- Alerts ---------------------------------------------------->
+        <div class="message" id="alert">
+          <div class="message__alert" id="alert__message">
+            <p>Card adicionado com sucesso!</p>
+          </div>
+        </div>
+
+        <div class="remove" id="alert"> 
+          <div class="remove__alert">
+            <p>Card removido com sucesso!</p>
+          </div>
+        </div>
+
       </main>
 
       <!---------------------------------------------- footer ------------------------------------------------->

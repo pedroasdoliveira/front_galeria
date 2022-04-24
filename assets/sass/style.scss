@@ -15,7 +15,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #010024;
+  background: linear-gradient(125deg, #001aff 30%, #4018d2 50%, #010024 75%);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -213,11 +213,18 @@ body {
           }
 
           &__imagem {
-            width: 85%;
+            width: 90%;
+            height: auto;
             margin: 0 auto;
             border: 5px solid #010024;
             box-shadow: 5px 5px 10px 5px #0000009d;
             border-radius: 15px;
+            transition: all 1.5s ease-in-out;
+
+            &:hover {
+              transform: scale(1.2);
+              cursor: grab;
+            }
           }
 
           &__ano {
@@ -391,9 +398,98 @@ body {
           }
         } 
       }
+      // ----------------------------------------- Modal delete -------------------------------
+      .delete__card {
+        @extend .modal__card;
+
+        .header-delete {
+          @extend .header;
+        }
+
+        .modal-delete {
+          padding: .5rem;
+
+          p {
+            text-align: center;
+            color: #010024;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+          }
+
+          .btns {
+            @include mixins.display-base;
+            gap: 2rem;
+            margin-top: 2rem;
+
+            .btn {
+              padding: .5rem;
+              width: 25%;
+              font-size: 1rem;
+              border-radius: 15px;
+              border: 3px solid transparent;
+              cursor: pointer;
+              transition: all .6s ease-in-out;
+            }
+
+            &_yes {
+              background-color: transparent;
+              color: #001aff;
+
+              &:hover {
+                transform: scale(1.2);
+                border: 3px solid #001aff;
+                font-weight: bold;
+              }
+            }
+
+            &_no {
+              background-color: transparent;
+              color: #3b0949;
+
+              &:hover {
+                transform: scale(1.2);
+                border: 3px solid #3b0949;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // ------------------------------------------------------------ Alerts ----------------------------------------
+  .message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #001aff 30%, #4018d2 50%);
+    width: 315px;
+    padding: 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+
+    &__alert {
+      color: #010024;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 0 auto;
     }
   }
 
+  .remove {
+    @extend .message;
+    display: none;
+    background: linear-gradient(45deg, #010024 30%, #4018d2 50%);
+
+    &__alert {
+      @extend .message__alert;
+      color: #e7e4fa;
+    }
+  }
+
+  // ---------------------------------------------------------------- Footer ---------------------------------------
   footer {
     width: 100%;
     margin-top: 2rem;

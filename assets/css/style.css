@@ -12,7 +12,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #010024;
+  background: linear-gradient(125deg, #001aff 30%, #4018d2 50%, #010024 75%);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -168,11 +168,17 @@ body {
   transition: all 0.6s ease-in-out;
 }
 .Home main .container .galeriaLista .galeriaListaItem__imagem, .Home main .container .galeriaLista .galeriaCardItem__imagem {
-  width: 85%;
+  width: 90%;
+  height: auto;
   margin: 0 auto;
   border: 5px solid #010024;
   box-shadow: 5px 5px 10px 5px #0000009d;
   border-radius: 15px;
+  transition: all 1.5s ease-in-out;
+}
+.Home main .container .galeriaLista .galeriaListaItem__imagem:hover, .Home main .container .galeriaLista .galeriaCardItem__imagem:hover {
+  transform: scale(1.2);
+  cursor: grab;
 }
 .Home main .container .galeriaLista .galeriaListaItem__ano, .Home main .container .galeriaLista .galeriaCardItem__ano {
   color: #242435;
@@ -255,7 +261,7 @@ body {
   align-items: center;
   overflow-y: auto;
 }
-.Home main .modal__card {
+.Home main .modal__card, .Home main .modal .delete__card {
   margin: 1rem;
   width: 100%;
   max-width: 600px;
@@ -270,7 +276,7 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
-.Home main .modal__card .header {
+.Home main .modal__card .header, .Home main .modal .delete__card .header, .Home main .modal .delete__card .header-delete {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,30 +285,30 @@ body {
   color: #e7e4fa;
   padding: 1rem;
 }
-.Home main .modal__card .header h2 {
+.Home main .modal__card .header h2, .Home main .modal .delete__card .header h2, .Home main .modal .delete__card .header-delete h2 {
   font-weight: bold;
   font-family: "Cutive Mono", sans-serif;
 }
-.Home main .modal__card .header a {
+.Home main .modal__card .header a, .Home main .modal .delete__card .header a, .Home main .modal .delete__card .header-delete a {
   text-decoration: none;
   font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.6s ease-in-out;
 }
-.Home main .modal__card .header a:hover {
+.Home main .modal__card .header a:hover, .Home main .modal .delete__card .header a:hover, .Home main .modal .delete__card .header-delete a:hover {
   color: #561867;
   transform: scale(1.2);
 }
-.Home main .modal__card .modal__form {
+.Home main .modal__card .modal__form, .Home main .modal .delete__card .modal__form {
   padding: 0.5rem;
 }
-.Home main .modal__card .modal__form form {
+.Home main .modal__card .modal__form form, .Home main .modal .delete__card .modal__form form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Home main .modal__card .modal__form form input, .Home main .modal__card .modal__form form textarea {
+.Home main .modal__card .modal__form form input, .Home main .modal .delete__card .modal__form form input, .Home main .modal__card .modal__form form textarea, .Home main .modal .delete__card .modal__form form textarea {
   width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
@@ -311,7 +317,7 @@ body {
   resize: none;
   border-radius: 15px;
 }
-.Home main .modal__card .modal__form form button {
+.Home main .modal__card .modal__form form button, .Home main .modal .delete__card .modal__form form button {
   padding: 0.5rem;
   width: 30%;
   font-size: 1rem;
@@ -323,9 +329,77 @@ body {
   cursor: pointer;
   transition: all 0.6s ease-in-out;
 }
-.Home main .modal__card .modal__form form button:hover {
+.Home main .modal__card .modal__form form button:hover, .Home main .modal .delete__card .modal__form form button:hover {
   background-color: #010024;
   border: 3px solid #010024;
+}
+.Home main .modal .delete__card .modal-delete {
+  padding: 0.5rem;
+}
+.Home main .modal .delete__card .modal-delete p {
+  text-align: center;
+  color: #010024;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.Home main .modal .delete__card .modal-delete .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.Home main .modal .delete__card .modal-delete .btns .btn {
+  padding: 0.5rem;
+  width: 25%;
+  font-size: 1rem;
+  border-radius: 15px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.6s ease-in-out;
+}
+.Home main .modal .delete__card .modal-delete .btns_yes {
+  background-color: transparent;
+  color: #001aff;
+}
+.Home main .modal .delete__card .modal-delete .btns_yes:hover {
+  transform: scale(1.2);
+  border: 3px solid #001aff;
+  font-weight: bold;
+}
+.Home main .modal .delete__card .modal-delete .btns_no {
+  background-color: transparent;
+  color: #3b0949;
+}
+.Home main .modal .delete__card .modal-delete .btns_no:hover {
+  transform: scale(1.2);
+  border: 3px solid #3b0949;
+  font-weight: bold;
+}
+.Home .message, .Home .remove {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(45deg, #001aff 30%, #4018d2 50%);
+  width: 315px;
+  padding: 1rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.Home .message__alert, .Home .remove__alert {
+  color: #010024;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 auto;
+}
+.Home .remove {
+  display: none;
+  background: linear-gradient(45deg, #010024 30%, #4018d2 50%);
+}
+.Home .remove__alert {
+  color: #e7e4fa;
 }
 .Home footer {
   width: 100%;
