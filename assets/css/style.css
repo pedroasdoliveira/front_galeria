@@ -107,6 +107,103 @@ body {
 .Home main .find-image .image-id-search #idImageBtn:hover {
   transform: scale(1.3);
 }
+.Home main .find-image .galeriaCard {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem {
+  background-color: #b2b1ba40;
+  border-radius: 15px;
+  padding: 0.8rem;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 450px) {
+  .Home main .find-image .galeriaCard .galeriaCardItem {
+    width: 65vw;
+    height: auto;
+  }
+}
+.Home main .find-image .galeriaCard .galeriaCardItem > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__titulo {
+  text-align: center;
+  color: #242435;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__tema {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  margin-bottom: 0.6rem;
+  font-style: oblique;
+  font-weight: bold;
+  transition: all 0.6s ease-in-out;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__imagem {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  border: 5px solid #010024;
+  box-shadow: 5px 5px 10px 5px #0000009d;
+  border-radius: 15px;
+  transition: all 1.5s ease-in-out;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__imagem:hover {
+  transform: scale(1.2);
+  cursor: grab;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__ano {
+  color: #242435;
+  margin-left: 1rem;
+  margin-bottom: 0.6rem;
+  margin-top: 0.6rem;
+  font-style: oblique;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__descr {
+  color: #242435;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 100%;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__btns .btn {
+  max-width: 300px;
+  background-color: transparent;
+  border: 3px solid #4018d2;
+  border-radius: 15px;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 1rem;
+  text-align: center;
+  transition: all 0.6s ease-in-out;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__btns .btn:hover {
+  transform: scale(1.2);
+  border: 3px solid transparent;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__btns .edit {
+  color: #1b1b9e;
+}
+.Home main .find-image .galeriaCard .galeriaCardItem__btns .delete {
+  color: #561867;
+}
 .Home main .container {
   display: flex;
   justify-content: center;
@@ -133,7 +230,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
-.Home main .container .galeriaLista .galeriaListaItem, .Home main .container .galeriaLista .galeriaCardItem {
+.Home main .container .galeriaLista .galeriaListaItem {
   background-color: #b2b1ba40;
   border-radius: 15px;
   padding: 0.8rem;
@@ -142,24 +239,24 @@ body {
   justify-content: space-between;
 }
 @media (max-width: 450px) {
-  .Home main .container .galeriaLista .galeriaListaItem, .Home main .container .galeriaLista .galeriaCardItem {
+  .Home main .container .galeriaLista .galeriaListaItem {
     width: 65vw;
     height: auto;
   }
 }
-.Home main .container .galeriaLista .galeriaListaItem > div, .Home main .container .galeriaLista .galeriaCardItem > div {
+.Home main .container .galeriaLista .galeriaListaItem > div {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
-.Home main .container .galeriaLista .galeriaListaItem__titulo, .Home main .container .galeriaLista .galeriaCardItem__titulo {
+.Home main .container .galeriaLista .galeriaListaItem__titulo {
   text-align: center;
   color: #242435;
   font-weight: bold;
   font-size: 1.5rem;
   margin: 1rem 0;
 }
-.Home main .container .galeriaLista .galeriaListaItem__tema, .Home main .container .galeriaLista .galeriaCardItem__tema {
+.Home main .container .galeriaLista .galeriaListaItem__tema {
   font-size: 1.2rem;
   margin-left: 1rem;
   margin-bottom: 0.6rem;
@@ -167,7 +264,7 @@ body {
   font-weight: bold;
   transition: all 0.6s ease-in-out;
 }
-.Home main .container .galeriaLista .galeriaListaItem__imagem, .Home main .container .galeriaLista .galeriaCardItem__imagem {
+.Home main .container .galeriaLista .galeriaListaItem__imagem {
   width: 90%;
   height: auto;
   margin: 0 auto;
@@ -176,25 +273,25 @@ body {
   border-radius: 15px;
   transition: all 1.5s ease-in-out;
 }
-.Home main .container .galeriaLista .galeriaListaItem__imagem:hover, .Home main .container .galeriaLista .galeriaCardItem__imagem:hover {
+.Home main .container .galeriaLista .galeriaListaItem__imagem:hover {
   transform: scale(1.2);
   cursor: grab;
 }
-.Home main .container .galeriaLista .galeriaListaItem__ano, .Home main .container .galeriaLista .galeriaCardItem__ano {
+.Home main .container .galeriaLista .galeriaListaItem__ano {
   color: #242435;
   margin-left: 1rem;
   margin-bottom: 0.6rem;
   margin-top: 0.6rem;
   font-style: oblique;
 }
-.Home main .container .galeriaLista .galeriaListaItem__descr, .Home main .container .galeriaLista .galeriaCardItem__descr {
+.Home main .container .galeriaLista .galeriaListaItem__descr {
   color: #242435;
   font-size: 1.2rem;
   margin-bottom: 1rem;
   text-align: center;
   line-height: 100%;
 }
-.Home main .container .galeriaLista .galeriaListaItem__btns, .Home main .container .galeriaLista .galeriaCardItem__btns {
+.Home main .container .galeriaLista .galeriaListaItem__btns {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,7 +299,7 @@ body {
   width: 100%;
   margin: 0.6rem 0;
 }
-.Home main .container .galeriaLista .galeriaListaItem__btns .btn, .Home main .container .galeriaLista .galeriaCardItem__btns .btn {
+.Home main .container .galeriaLista .galeriaListaItem__btns .btn {
   max-width: 300px;
   background-color: transparent;
   border: 3px solid #4018d2;
@@ -215,14 +312,14 @@ body {
   text-align: center;
   transition: all 0.6s ease-in-out;
 }
-.Home main .container .galeriaLista .galeriaListaItem__btns .btn:hover, .Home main .container .galeriaLista .galeriaCardItem__btns .btn:hover {
+.Home main .container .galeriaLista .galeriaListaItem__btns .btn:hover {
   transform: scale(1.2);
   border: 3px solid transparent;
 }
-.Home main .container .galeriaLista .galeriaListaItem__btns .edit, .Home main .container .galeriaLista .galeriaCardItem__btns .edit {
+.Home main .container .galeriaLista .galeriaListaItem__btns .edit {
   color: #1b1b9e;
 }
-.Home main .container .galeriaLista .galeriaListaItem__btns .delete, .Home main .container .galeriaLista .galeriaCardItem__btns .delete {
+.Home main .container .galeriaLista .galeriaListaItem__btns .delete {
   color: #561867;
 }
 .Home main .btn-modal-create {

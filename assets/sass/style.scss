@@ -136,6 +136,129 @@ body {
           }
         }
       }
+
+      .galeriaCard {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+
+        .galeriaCardItem {
+          background-color: #b2b1ba40;
+          border-radius: 15px;
+          padding: .8rem;
+          width: 400px;
+          display: flex;
+          justify-content: space-between;
+
+          @media (max-width: 450px) {
+            width: 65vw;
+            height: auto;
+          }
+
+          > div {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+          }
+
+          &__titulo {
+            text-align: center;
+            color: #242435;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+          }
+
+          &__tema {
+            font-size: 1.2rem;
+            margin-left: 1rem;
+            margin-bottom: .6rem;
+            font-style: oblique;
+            font-weight: bold;
+            transition: all .6s ease-in-out;
+            // animation: font 10s ease infinite;
+
+            // @keyframes font {
+            //   0% {
+            //     color: #1b1b9e;
+            //   }
+
+            //   50% {
+            //     color: #e7e4fa;
+            //   }
+
+            //   100% {
+            //     color: #1b1b9e;
+            //   }
+            // }
+          }
+
+          &__imagem {
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            border: 5px solid #010024;
+            box-shadow: 5px 5px 10px 5px #0000009d;
+            border-radius: 15px;
+            transition: all 1.5s ease-in-out;
+
+            &:hover {
+              transform: scale(1.2);
+              cursor: grab;
+            }
+          }
+
+          &__ano {
+            color: #242435;
+            margin-left: 1rem;
+            margin-bottom: .6rem;
+            margin-top: .6rem;
+            font-style: oblique;
+          }
+
+          &__descr {
+            color: #242435;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            line-height: 100%;
+          }
+
+          &__btns {
+            @include mixins.display-base;
+            justify-content: space-evenly;
+            width: 100%;
+            margin: .6rem 0;
+
+            .btn {
+              max-width: 300px;
+              background-color: transparent;
+              border: 3px solid #4018d2;
+              border-radius: 15px;
+              padding: .5rem;
+              cursor: pointer;
+              font-size: 1rem;
+              font-weight: bold;
+              margin: 0 1rem;
+              text-align: center;
+              transition: all .6s ease-in-out;
+
+              &:hover {
+                transform: scale(1.2);
+                border: 3px solid transparent;
+              }
+            }
+
+            .edit {
+              color: #1b1b9e;
+            }
+
+            .delete {
+              color: #561867;
+            }
+          }
+        }
+      }
     }
 
     .container {
@@ -161,7 +284,7 @@ body {
           grid-template-columns: 1fr;
         }
 
-        .galeriaListaItem, .galeriaCardItem {
+        .galeriaListaItem {
           background-color: #b2b1ba40;
           border-radius: 15px;
           padding: .8rem;

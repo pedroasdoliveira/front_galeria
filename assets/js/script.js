@@ -35,7 +35,7 @@ async function findbyGallery() {
 
     const divChosenGallery = document.querySelector('#foundImage');
 
-    if (gallery.id == undefined) {
+    if (gallery._id == undefined) {
         alert('Card não encontrado!');
         return;
     }
@@ -49,7 +49,7 @@ async function findbyGallery() {
                 <img class="galeriaCardItem__imagem" src="${gallery.imagem}" alt="Imagem ${gallery.titulo}"/>
                 <div class="galeriaCardItem__ano">${gallery.ano}</div>
                 <div class="galeriaCardItem__descr">${gallery.descricao}</div>
-                <div class="galeriaCardItem__btn">
+                <div class="galeriaCardItem__btns">
                     <button class="edit btn" onclick="openModal('${gallery._id}')">Editar</button>
                     <button class="delete btn" onclick="openModalDelete('${gallery._id}')">Apagar</button>
                 </div>
@@ -121,7 +121,7 @@ async function modalFunctions(event) {
     const response = await fetch(endpoint, {
         method: modo ? 'put' : 'post',
         headers: {
-            "content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         mode: 'cors',
         body: JSON.stringify(gallery),
@@ -183,12 +183,10 @@ async function deleteGallery(id) {
         mode: 'cors',
     });
 
-    document.querySelector('#galleryList').innerHTML = '';
-
     document.location.reload(true);
+
     openMessage();
     closeModalDelete();
-    findAllGalleries();
 }
 
 // --------------------------------------------- Alerts -----------------------------------------
