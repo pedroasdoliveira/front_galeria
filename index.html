@@ -17,8 +17,6 @@
       <header class="Header">
         <div class="Header__row">
           <div class="Description">
-            <img class="Description__img" src="" alt="" />
-
             <h1 class="Description__title">Galeria</h1>
           </div>
         </div>
@@ -53,7 +51,7 @@
         <section class="modal" id="overlay">
           <div class="modal__card">
             <div class="header">
-              <h2>Adicionar card a galeria</h2>
+              <h2 id="header-modal">Adicionar card a galeria</h2>
               <a onclick="closeModal()"><i class="bi bi-x-circle"></i></a>
             </div>
 
@@ -71,7 +69,7 @@
 
                 <textarea name="descricao" id="descricao" cols="10" rows="6" placeholder="Descrição" required></textarea>
 
-                <button id="button-modal" type="submit" onclick="modal()">Adicionar</button>
+                <button id="button-modal" type="submit" onclick="modalFunctions(event)">Adicionar</button>
               </form>
             </div>
           </div>

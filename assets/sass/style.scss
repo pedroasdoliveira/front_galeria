@@ -31,21 +31,21 @@ body {
   background-size: 250% 100%;
   overflow: auto;
   cursor: default;
-  animation: colors 10s ease infinite;
+  // animation: colors 10s ease infinite;
 
-  @keyframes colors {
-    0% {
-      background-position: 0% 50%;
-    }
+  // @keyframes colors {
+  //   0% {
+  //     background-position: 0% 50%;
+  //   }
 
-    50% {
-      background-position: 100% 50%;
-    }
+  //   50% {
+  //     background-position: 100% 50%;
+  //   }
 
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+  //   100% {
+  //     background-position: 0% 50%;
+  //   }
+  // }
 }
 
 .Home {
@@ -59,7 +59,6 @@ body {
     max-width: 1275px;
     margin: 0 auto;
     position: relative;
-    font-family: "Cutive Mono", sans-serif;
     border: 3px solid #42404a;
     border-radius: 25px;
 
@@ -77,6 +76,7 @@ body {
         &__title {
           font-weight: bold;
           font-size: 2.3rem;
+          font-family: "Cutive Mono", sans-serif;
         }
       }
     }
@@ -195,21 +195,21 @@ body {
             font-style: oblique;
             font-weight: bold;
             transition: all .6s ease-in-out;
-            animation: font 10s ease infinite;
+            // animation: font 10s ease infinite;
 
-            @keyframes font {
-              0% {
-                color: #1b1b9e;
-              }
+            // @keyframes font {
+            //   0% {
+            //     color: #1b1b9e;
+            //   }
 
-              50% {
-                color: #e7e4fa;
-              }
+            //   50% {
+            //     color: #e7e4fa;
+            //   }
 
-              100% {
-                color: #1b1b9e;
-              }
-            }
+            //   100% {
+            //     color: #1b1b9e;
+            //   }
+            // }
           }
 
           &__imagem {
@@ -298,6 +298,7 @@ body {
       }
     }
 
+    // --------------------------------------------------------- Modal ---------------------------------------------------
     .modal {
       background-color: #b2b1ba40;
       width: 100vw;
@@ -307,6 +308,89 @@ body {
       left: 0;
       z-index: 1;
       display: none;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+
+      &__card {
+        margin: 1rem;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        min-height: 300px;
+        background-color: #b2b1ba;
+        opacity: 60%;
+        border: 3px solid #242435;
+        box-shadow: 5px 5px 10px 5px #0000009d;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .header {
+          @include mixins.display-base;
+          justify-content: space-between;
+          background: linear-gradient(45deg, #001aff 30%, #4018d2 50%, #010024 75%);
+          color: #e7e4fa;
+          padding: 1rem;
+
+          h2 {
+            font-weight: bold;
+            font-family: "Cutive Mono", sans-serif;
+          }
+
+          a {
+            text-decoration: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all .6s ease-in-out;
+
+            &:hover {
+              color: #561867;
+              transform: scale(1.2);
+            }
+          }
+        }
+
+        .modal__form {
+          padding: .5rem;
+
+          form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            input, textarea {
+              width: 100%;
+              padding: 0.5rem;
+              font-size: 1rem;
+              outline: none;
+              margin-bottom: .8rem;
+              resize: none;
+              border-radius: 15px;
+            }
+
+            button {
+              padding: .5rem;
+              width: 30%;
+              font-size: 1rem;
+              background-color: transparent;
+              color: #001aff;
+              border-radius: 15px;
+              border: 3px solid transparent;
+              margin-bottom: .5rem;
+              cursor: pointer;
+              transition: all .6s ease-in-out;
+
+              &:hover {
+                background-color: #010024;
+                border: 3px solid #010024;
+              }
+            }
+          }
+        } 
+      }
     }
   }
 

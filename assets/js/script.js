@@ -16,8 +16,8 @@ async function findAllGalleries() {
                     <div class="galeriaListaItem__ano">${galeria.ano}</div>
                     <div class="galeriaListaItem__descr">${galeria.descricao}</div>
                     <div class="galeriaListaItem__btns">
-                        <button class="edit btn" onclick="openModal(${galeria._id})">Editar</button>
-                        <button class="delete btn" onclick="openModalDelete(${galeria._id})">Apagar</button>
+                        <button class="edit btn" onclick="openModal('${galeria._id}')">Editar</button>
+                        <button class="delete btn" onclick="openModalDelete('${galeria._id}')">Apagar</button>
                     </div>
                 </div>
             </div>
@@ -50,10 +50,108 @@ async function findbyGallery() {
                 <div class="galeriaCardItem__ano">${gallery.ano}</div>
                 <div class="galeriaCardItem__descr">${gallery.descricao}</div>
                 <div class="galeriaCardItem__btn">
-                    <button class="edit btn" onclick="openModal(${gallery._id})">Editar</button>
-                    <button class="delete btn" onclick="openModalDelete(${gallery._id})">Apagar</button>
+                    <button class="edit btn" onclick="openModal('${gallery._id}')">Editar</button>
+                    <button class="delete btn" onclick="openModalDelete('${gallery._id}')">Apagar</button>
                 </div>
             </div>
         </div>
     `
 };
+
+// ------------------------------------------------------- Modal -----------------------------------------
+async function openModal(id = '') {
+    if (id != '') { // update
+        document.querySelector('#header-modal').innerText = 'Editar Card';
+        document.querySelector('#button-modal').innerText = 'Editar';
+
+        const response = await fetch(`${baseURL}/images/${id}`);
+        const gallery = await response.json();
+
+        document.querySelector('#_id').value = gallery._id;
+        document.querySelector('#titulo').value = gallery.titulo;
+        document.querySelector('#tema').value = gallery.tema;
+        document.querySelector('#imagem').value = gallery.imagem;
+        document.querySelector('#ano').value = gallery.ano;
+        document.querySelector('#descricao').value = gallery.descricao;
+    }
+    else { // add
+        document.querySelector('#header-modal').innerText = 'Adicionar card a galeria';
+        document.querySelector('#button-modal').innerText = 'Adicionar';
+    }
+
+    const modal = document.querySelector('#overlay');
+    modal.style.display = 'flex';
+}
+
+async function closeModal() {
+    const modal = document.querySelector('#overlay');
+    modal.style.display = 'none';
+
+    document.querySelector('#titulo').value = '';
+    document.querySelector('#tema').value = '';
+    document.querySelector('#imagem').value = '';
+    document.querySelector('#ano').value = 0;
+    document.querySelector('#descricao').value = '';
+}
+
+// ------------------------------------------------ Modal create and update ------------------------------
+async function modalFunctions(event) {
+    event.preventDefault();
+
+    const id = document.querySelector('#_id').value;
+    const title = document.querySelector('#titulo').value;
+    const theme = document.querySelector('#tema').value;
+    const image = document.querySelector('#imagem').value;
+    const year = document.querySelector('#ano').value;
+    const description = document.querySelector('#descricao').value;
+
+    const gallery = {
+        id,
+        title,
+        theme,
+        image,
+        year,
+        description
+    };
+
+    const modo = id > 0;
+
+    const endpoint = baseURL + (modo ? `/edit/${id}` : `/add`);
+
+    const response = await fetch(endpoint, {
+        method: modo ? 'put' : 'post',
+        headers: {
+            "content-Type": "application/json",
+        },
+        mode: 'cors',
+        body: JSON.stringify(gallery),
+    });
+
+    const newGallery = await response.json();
+
+    const html = `
+        <div class="galeriaListaItem" id="galeriaListaItem_${gallery._id}">
+
+            <div>
+                <div class="galeriaListaItem__titulo">${newGallery.titulo}</div>
+                <div class="galeriaListaItem__tema">${newGallery.tema}</div>
+                <img class="galeriaListaItem__imagem" src="${newGallery.imagem}" alt="Imagem ${newGallery.titulo}"/>
+                <div class="galeriaListaItem__ano">${newGallery.ano}</div>
+                <div class="galeriaListaItem__descr">${newGallery.descricao}</div>
+                <div class="galeriaListaItem__btns">
+                    <button class="edit btn" onclick="openModal('${newGallery._id}')">Editar</button>
+                    <button class="delete btn" onclick="openModalDelete('${newGallery._id}')">Apagar</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    if (modo) { // update
+        document.querySelector(`#galeriaListaItem_${id}`).outerHTML = html;
+    }
+    else { // add
+        document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
+    }
+
+    closeModal();
+}
