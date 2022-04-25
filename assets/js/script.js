@@ -1,4 +1,5 @@
 const baseURL = "http://localhost:3005/galleries";
+const msgAlert = document.querySelector('.msg__alert');
 
 // --------------------------------------------------------- Find All -------------------------------------------
 async function findAllGalleries() {
@@ -35,8 +36,14 @@ async function findbyGallery() {
 
     const divChosenGallery = document.querySelector('#foundImage');
 
-    if (gallery._id == undefined) {
-        alert('Card não encontrado!');
+    if (gallery.message != undefined) {
+        localStorage.setItem('message', gallery.message);
+        localStorage.setItem('type', 'danger');
+
+        msgAlert.innerText = localStorage.getItem('message');
+        msgAlert.classList.add(localStorage.getItem('type'));
+
+        closeMessageAlert();
         return;
     }
 
@@ -95,8 +102,7 @@ async function closeModal() {
 }
 
 // ------------------------------------------------ Modal create and update ------------------------------
-async function modalFunctions(event) {
-    event.preventDefault();
+async function modalFunctions() {
 
     const id = document.querySelector('#_id').value;
     const title = document.querySelector('#titulo').value;
@@ -113,6 +119,7 @@ async function modalFunctions(event) {
         year,
         description
     };
+    console.log(gallery)
 
     const modo = id != '';
 
@@ -129,7 +136,7 @@ async function modalFunctions(event) {
 
     const newGallery = await response.json();
 
-    document.location.reload(true);
+    console.log(newGallery)
 
     // const html = `
     //     <div class="galeriaListaItem" id="galeriaListaItem_${gallery._id}">
@@ -148,14 +155,31 @@ async function modalFunctions(event) {
     //     </div>
     // `;
 
-    // if (modo) { // update
-    //     document.querySelector(`#galeriaListaItem_${id}`).outerHTML = html;
-    // }
-    // else { // add
-    //     document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
-    // }
+    if (newGallery.message != undefined) {
+        localStorage.setItem("message", newGallery.message);
+        localStorage.setItem("type", "danger");
 
-    openMessage();
+        msgAlert.innerText = localStorage.getItem("message");
+        msgAlert.classList.add(localStorage.getItem("type"));
+
+        closeMessageAlert();
+        return;
+    }
+
+    if (modo) { // update
+        localStorage.setItem("message", "Card editado com sucesso!");
+        localStorage.setItem("type", "success");
+
+        msgAlert.innerText = localStorage.getItem("message");
+        msgAlert.classList.add(localStorage.getItem("type"));
+
+        closeMessageAlert();
+    }
+    else { // add
+        document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
+        openMessage();
+    }
+
     closeModal();
 }
 
@@ -212,3 +236,12 @@ function closeMessage() {
     const alert = document.querySelector('#alert');
     alert.style.display = 'none';
 }
+
+function closeMessageAlert() {
+    setTimeout(function() {
+        msgAlert.innerText = "";
+        msgAlert.classList.remove(localStorage.getItem('type'));
+        localStorage.clear();
+    }, 3000);
+}
+

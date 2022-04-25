@@ -22,6 +22,11 @@
         </div>
       </header>
 
+      <!--------------------------------------------- Message --------------------------------------------->
+      <section class="msg">
+        <span class="msg__alert"></span>
+      </section>
+
       <!---------------------------------------- Input ------------------------------------------------->
       <main>
         <h2>Encontrar Imagem</h2>
@@ -56,7 +61,7 @@
             </div>
 
             <div class="modal__form">
-              <form action="">
+              <div>
                 <input type="hidden" name="_id" id="_id">
 
                 <input type="text" name="titulo" id="titulo" placeholder="Titulo do Card" required>
@@ -69,8 +74,8 @@
 
                 <textarea name="descricao" id="descricao" cols="10" rows="6" placeholder="Descrição" required></textarea>
 
-                <button id="button-modal" type="submit" onclick="modalFunctions(event)">Adicionar</button>
-              </form>
+                <button id="button-modal" onclick="modalFunctions()">Adicionar</button>
+              </div>
             </div>
           </div>
         </section>

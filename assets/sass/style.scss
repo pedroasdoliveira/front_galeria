@@ -82,6 +82,37 @@ body {
     }
   }
 
+  .msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    max-width: 1275px;
+
+    &__alert {
+      width: 20%;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .danger {
+      background: linear-gradient(125deg, #561867 30%, #4018d2 50%);
+      color: #010024;
+      border: 1px solid #010024;
+      border-radius: 15px;
+      padding: .5rem;
+    }
+
+    .success {
+      @extend .danger;
+      background: linear-gradient(125deg, #001aff 30%, #4018d2 50%);
+      color: #561867;
+      border: 1px solid #561867;
+    }
+  }
+
   main {
     > h2 {
       display: flex;
@@ -485,7 +516,7 @@ body {
         .modal__form {
           padding: .5rem;
 
-          form {
+          form, div {
             display: flex;
             flex-direction: column;
             align-items: center;
