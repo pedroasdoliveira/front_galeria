@@ -71,7 +71,8 @@ body {
   width: 20%;
   font-weight: bold;
   text-align: center;
-  z-index: 1;
+  z-index: 999999;
+  position: fixed;
   cursor: pointer;
 }
 .Home .msg .danger, .Home .msg .success {
@@ -425,13 +426,21 @@ body {
 .Home main .modal__card .modal__form, .Home main .modal .delete__card .modal__form {
   padding: 0.5rem;
 }
-.Home main .modal__card .modal__form form, .Home main .modal .delete__card .modal__form form, .Home main .modal__card .modal__form div, .Home main .modal .delete__card .modal__form div {
+.Home main .modal__card .modal__form form, .Home main .modal .delete__card .modal__form form,
+.Home main .modal__card .modal__form div,
+.Home main .modal .delete__card .modal__form div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Home main .modal__card .modal__form form input, .Home main .modal .delete__card .modal__form form input, .Home main .modal__card .modal__form form textarea, .Home main .modal .delete__card .modal__form form textarea, .Home main .modal__card .modal__form div input, .Home main .modal .delete__card .modal__form div input, .Home main .modal__card .modal__form div textarea, .Home main .modal .delete__card .modal__form div textarea {
+.Home main .modal__card .modal__form form input, .Home main .modal .delete__card .modal__form form input,
+.Home main .modal__card .modal__form form textarea,
+.Home main .modal .delete__card .modal__form form textarea,
+.Home main .modal__card .modal__form div input,
+.Home main .modal .delete__card .modal__form div input,
+.Home main .modal__card .modal__form div textarea,
+.Home main .modal .delete__card .modal__form div textarea {
   width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
@@ -440,7 +449,9 @@ body {
   resize: none;
   border-radius: 15px;
 }
-.Home main .modal__card .modal__form form button, .Home main .modal .delete__card .modal__form form button, .Home main .modal__card .modal__form div button, .Home main .modal .delete__card .modal__form div button {
+.Home main .modal__card .modal__form form button, .Home main .modal .delete__card .modal__form form button,
+.Home main .modal__card .modal__form div button,
+.Home main .modal .delete__card .modal__form div button {
   padding: 0.5rem;
   width: 30%;
   font-size: 1rem;
@@ -452,7 +463,9 @@ body {
   cursor: pointer;
   transition: all 0.6s ease-in-out;
 }
-.Home main .modal__card .modal__form form button:hover, .Home main .modal .delete__card .modal__form form button:hover, .Home main .modal__card .modal__form div button:hover, .Home main .modal .delete__card .modal__form div button:hover {
+.Home main .modal__card .modal__form form button:hover, .Home main .modal .delete__card .modal__form form button:hover,
+.Home main .modal__card .modal__form div button:hover,
+.Home main .modal .delete__card .modal__form div button:hover {
   background-color: #010024;
   border: 3px solid #010024;
 }

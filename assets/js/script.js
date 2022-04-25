@@ -34,21 +34,18 @@ async function findbyGallery() {
     const response = await fetch(`${baseURL}/images/${idGallery}`);
     const gallery = await response.json();
 
-    const divChosenGallery = document.querySelector('#foundImage');
-
     if (gallery.message != undefined) {
         localStorage.setItem('message', gallery.message);
         localStorage.setItem('type', 'danger');
 
-        msgAlert.innerText = localStorage.getItem('message');
-        msgAlert.classList.add(localStorage.getItem('type'));
-
-        closeMessageAlert();
+        showMessageAlert();
         return;
     }
 
-    divChosenGallery.innerHTML = 
-    `
+    const divChosenGallery = document.querySelector('#foundImage');
+
+    divChosenGallery.innerHTML =
+        `
         <div class="galeriaCardItem" id="galeriaListaItem_${gallery._id}">
             <div>
                 <div class="galeriaCardItem__titulo">${gallery.titulo}</div>
@@ -80,8 +77,7 @@ async function openModal(id = '') {
         document.querySelector('#imagem').value = gallery.imagem;
         document.querySelector('#ano').value = gallery.ano;
         document.querySelector('#descricao').value = gallery.descricao;
-    }
-    else { // add
+    } else { // add
         document.querySelector('#header-modal').innerText = 'Adicionar card a galeria';
         document.querySelector('#button-modal').innerText = 'Adicionar';
     }
@@ -105,21 +101,20 @@ async function closeModal() {
 async function modalFunctions() {
 
     const id = document.querySelector('#_id').value;
-    const title = document.querySelector('#titulo').value;
-    const theme = document.querySelector('#tema').value;
-    const image = document.querySelector('#imagem').value;
-    const year = document.querySelector('#ano').value;
-    const description = document.querySelector('#descricao').value;
+    const titulo = document.querySelector('#titulo').value;
+    const tema = document.querySelector('#tema').value;
+    const imagem = document.querySelector('#imagem').value;
+    const ano = document.querySelector('#ano').value;
+    const descricao = document.querySelector('#descricao').value;
 
     const gallery = {
         id,
-        title,
-        theme,
-        image,
-        year,
-        description
+        titulo,
+        tema,
+        imagem,
+        ano,
+        descricao
     };
-    console.log(gallery)
 
     const modo = id != '';
 
@@ -128,15 +123,13 @@ async function modalFunctions() {
     const response = await fetch(endpoint, {
         method: modo ? 'put' : 'post',
         headers: {
-            "Content-Type": "application/json",
+            "content-Type": "application/json",
         },
         mode: 'cors',
         body: JSON.stringify(gallery),
     });
 
     const newGallery = await response.json();
-
-    console.log(newGallery)
 
     // const html = `
     //     <div class="galeriaListaItem" id="galeriaListaItem_${gallery._id}">
@@ -159,28 +152,19 @@ async function modalFunctions() {
         localStorage.setItem("message", newGallery.message);
         localStorage.setItem("type", "danger");
 
-        msgAlert.innerText = localStorage.getItem("message");
-        msgAlert.classList.add(localStorage.getItem("type"));
-
-        closeMessageAlert();
+        showMessageAlert();
         return;
     }
 
     if (modo) { // update
         localStorage.setItem("message", "Card editado com sucesso!");
         localStorage.setItem("type", "success");
-
-        msgAlert.innerText = localStorage.getItem("message");
-        msgAlert.classList.add(localStorage.getItem("type"));
-
-        closeMessageAlert();
-    }
-    else { // add
-        document.querySelector('#galleryList').insertAdjacentHTML('beforeend', html);
+    } else { // add
         openMessage();
     }
 
     closeModal();
+    document.location.reload(true);
 }
 
 // ----------------------------------------------- Modal delete ---------------------------------
@@ -189,7 +173,7 @@ async function openModalDelete(id) {
 
     const btnDelete = document.querySelector('.btns_yes');
 
-    btnDelete.addEventListener('click', function() {
+    btnDelete.addEventListener('click', function () {
         deleteGallery(id);
     })
 }
@@ -207,8 +191,6 @@ async function deleteGallery(id) {
         mode: 'cors',
     });
 
-    document.location.reload(true);
-
     openMessage();
     closeModalDelete();
 }
@@ -222,11 +204,12 @@ function openMessage() {
     alert.style.display = 'flex';
 
     seconds = 0;
-    timer = setInterval(function() {
+    timer = setInterval(function () {
         seconds++;
 
-        if (seconds == 5) {
+        if (seconds == 3) {
             closeMessage();
+            document.location.reload(true);
         }
     }, 1000);
 }
@@ -237,11 +220,20 @@ function closeMessage() {
     alert.style.display = 'none';
 }
 
+// ----------------------------------------------- Message -----------------------------------------
+function showMessageAlert() {
+    msgAlert.innerText = localStorage.getItem("message");
+    msgAlert.classList.add(localStorage.getItem("type"));
+
+    closeMessageAlert();
+}
+
 function closeMessageAlert() {
-    setTimeout(function() {
+    setTimeout(function () {
         msgAlert.innerText = "";
         msgAlert.classList.remove(localStorage.getItem('type'));
         localStorage.clear();
     }, 3000);
 }
 
+showMessageAlert();

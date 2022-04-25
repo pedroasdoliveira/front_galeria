@@ -37,7 +37,9 @@
               type="text"
               placeholder="Digite o numero do card."
             />
-            <button id="idImageBtn" onclick="findbyGallery()"><i class="bi bi-search"></i></button>
+            <button id="idImageBtn" onclick="findbyGallery()">
+              <i class="bi bi-search"></i>
+            </button>
           </div>
           <div class="galeriaCard" id="foundImage"></div>
         </div>
@@ -62,19 +64,51 @@
 
             <div class="modal__form">
               <div>
-                <input type="hidden" name="_id" id="_id">
+                <input type="hidden" name="_id" id="_id" />
 
-                <input type="text" name="titulo" id="titulo" placeholder="Titulo do Card" required>
+                <input
+                  type="text"
+                  name="titulo"
+                  id="titulo"
+                  placeholder="Titulo do Card"
+                  required
+                />
 
-                <input type="text" name="tema" id="tema" placeholder="Tema do Card" required>
+                <input
+                  type="text"
+                  name="tema"
+                  id="tema"
+                  placeholder="Tema do Card"
+                  required
+                />
 
-                <input type="text" name="imagem" id="imagem" placeholder="Link da imagem" required>
+                <input
+                  type="text"
+                  name="imagem"
+                  id="imagem"
+                  placeholder="Link da imagem"
+                  required
+                />
 
-                <input type="number" name="ano" id="ano" placeholder="Ano da imagem">
+                <input
+                  type="number"
+                  name="ano"
+                  id="ano"
+                  placeholder="Ano da imagem"
+                />
 
-                <textarea name="descricao" id="descricao" cols="10" rows="6" placeholder="Descrição" required></textarea>
+                <textarea
+                  name="descricao"
+                  id="descricao"
+                  cols="10"
+                  rows="6"
+                  placeholder="Descrição"
+                  required
+                ></textarea>
 
-                <button id="button-modal" onclick="modalFunctions()">Adicionar</button>
+                <button id="button-modal" onclick="modalFunctions()">
+                  Adicionar
+                </button>
               </div>
             </div>
           </div>
@@ -90,9 +124,11 @@
 
             <div class="modal-delete">
               <p>Deseja remover o Card escolhido?</p>
-              <div class="btns"> 
+              <div class="btns">
                 <button class="btns_yes btn">Sim</button>
-                <button class="btns_no btn" onclick="closeModalDelete()">Não</button>
+                <button class="btns_no btn" onclick="closeModalDelete()">
+                  Não
+                </button>
               </div>
             </div>
           </div>
@@ -105,20 +141,25 @@
           </div>
         </div>
 
-        <div class="remove" id="alert"> 
+        <div class="remove" id="alert">
           <div class="remove__alert">
             <p>Card removido com sucesso!</p>
           </div>
         </div>
-
       </main>
 
       <!---------------------------------------------- footer ------------------------------------------------->
       <footer>
         <div>
           <p>Desenvolvedor FullStack: Pedro Oliveira</p>
-          <a href="https://github.com/pedroasdoliveira" target="_blank"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/pedro-augusto-silva-de-oliveira/" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="https://github.com/pedroasdoliveira" target="_blank"
+            ><i class="bi bi-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/pedro-augusto-silva-de-oliveira/"
+            target="_blank"
+            ><i class="bi bi-linkedin"></i
+          ></a>
         </div>
       </footer>
     </section>
